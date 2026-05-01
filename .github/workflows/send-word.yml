@@ -2,8 +2,8 @@ name: Daily Word Reminder
 
 on:
   schedule:
-    - cron: '0 1 * * *'   # 오전 10시 KST (01:00 UTC)
-    - cron: '20 9 * * *'  # 오후 6시 20분 KST (09:20 UTC)
+    - cron: '45 0 * * *'   # 오전 9시 45분 KST (00:45 UTC)
+    - cron: '45 13 * * *'  # 밤 10시 45분 KST (13:45 UTC)
   workflow_dispatch:       # 수동 실행 버튼
 
 jobs:

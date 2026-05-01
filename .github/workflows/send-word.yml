@@ -1,0 +1,27 @@
+name: Daily Word Reminder
+
+on:
+  schedule:
+    - cron: '0 1 * * *'   # 오전 10시 KST (01:00 UTC)
+    - cron: '20 9 * * *'  # 오후 6시 20분 KST (09:20 UTC)
+  workflow_dispatch:       # 수동 실행 버튼
+
+jobs:
+  send:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - run: npm ci
+
+      - run: node run.js
+        env:
+          GOOGLE_SERVICE_ACCOUNT_KEY: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_KEY }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          SPREADSHEET_ID: ${{ secrets.SPREADSHEET_ID }}

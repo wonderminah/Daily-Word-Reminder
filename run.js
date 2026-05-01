@@ -28,7 +28,7 @@ async function getRandomWord() {
 
 async function sendTelegramMessage(word) {
   const text =
-    `📚 오늘의 단어\n\n` +
+    `📚 ${new Date().toLocaleDateString('ko-KR', { month: 'long', day: 'numeric', timeZone: 'Asia/Seoul' })}의 단어\n` +
     `🇰🇷 ${word.korean}\n` +
     `🇯🇵 ${word.japanese}\n` +
     `🇺🇸 ${word.english}`;

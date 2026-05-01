@@ -18,7 +18,9 @@ async function getRandomWord() {
   const rows = (res.data.values || []).filter(row => row[0] || row[1] || row[2]);
   if (rows.length === 0) throw new Error('시트에 데이터가 없습니다.');
 
-  const row = rows[Math.floor(Math.random() * rows.length)];
+  const d = new Date(new Date().toLocaleString('en-US', { timeZone: 'Asia/Seoul' }));
+  const seed = d.getFullYear() * 10000 + (d.getMonth() + 1) * 100 + d.getDate();
+  const row = rows[seed % rows.length];
   return {
     korean: row[0] || '',
     japanese: row[1] || '',
